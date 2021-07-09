@@ -3,12 +3,12 @@
     flex-direction: column;
     flex:0.35;
 }
-.sidebar_search{
+.sidebar__search{
     display:flex;
     align-items:center;
     background-color: #f6f6f6;
     height:39px;
-    padding:20px;
+    padding:10px;
 }
 .sidebar__container{
     display:flex;
@@ -47,4 +47,7 @@
     flex:1;
     background-color:white;
     overflow:scroll;
+}
+.sidebar__chat::-moz-list-number{
+    display:none;
 }
