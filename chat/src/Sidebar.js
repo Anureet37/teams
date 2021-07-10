@@ -27,7 +27,10 @@ function Sidebar(props) {
     return (
         <div className="sidebar">
             <div className="sidebar__header">
-                <Avatar src={user?.photoURL}/>
+                <div>
+                    <Avatar src={user?.photoURL}/>
+                    <p>{user.displayName}</p>
+                </div>
                 <div className="sidebar__headerRight">
                     <IconButton>
                         <DonutLargeIcon />

@@ -1,12 +1,13 @@
 .sidebar{
     display: flex;
     flex-direction: column;
-    flex:0.35;
+    flex:0.3;
+    max-width:300px;
 }
 .sidebar__search{
     display:flex;
     align-items:center;
-    background-color: #f6f6f6;
+    background-color: #52a5a1;
     height:39px;
     padding:10px;
 }
@@ -30,14 +31,13 @@
 .sidebar__header{
     display: flex;
     justify-content: space-between;
-    padding-top:20px;
-    border-right:1px solid lightgray;
+    padding:25px;
 }
 .sidebar__heightRight{
     display:flex;
     justify-content: space-between;
     align-items: center;
-    min-width: 10vw;
+    min-width: 8vw;
 }
 .sidebar__headerRight > .MuiSvgIcon-root{
     margin-right: 2vw;
@@ -47,7 +47,4 @@
     flex:1;
     background-color:white;
     overflow:scroll;
-}
-.sidebar__chat::-moz-list-number{
-    display:none;
 }

@@ -2,7 +2,8 @@ import React ,{useEffect, useState} from 'react'
 import "./Chat.css"
 import { useParams } from 'react-router-dom';
 import { Avatar,IconButton } from '@material-ui/core'
-import { AttachFile, SearchOutlined, MoreVert, InsertEmoticon, Mic } from '@material-ui/icons';
+import { InsertEmoticon, Mic } from '@material-ui/icons';
+import VideocamIcon from '@material-ui/icons/Videocam';
 import db from "./firebase"
 import { useStateValue } from './StateProvider';
 import firebase from "firebase";
@@ -35,8 +36,19 @@ function Chat() {
             name:user.displayName,
             message:input,
             time:firebase.firestore.FieldValue.serverTimestamp(),
+            isLink:false,
         })
         setInput("");
+    };
+    const startCall=(e)=>{
+        e.preventDefault();
+        db.collection('room').doc(roomId).collection('messages').add({
+            name:user.displayName,
+            message:`https://zoom-clone1-1.herokuapp.com/${roomId}`,
+            time:firebase.firestore.FieldValue.serverTimestamp(),
+            isLink:true,
+        })
+        window.open(`https://zoom-clone1-1.herokuapp.com/${roomId}`, '_blank', 'noopener,noreferrer')
     };
     return (
         <div className="chat">
@@ -49,23 +61,21 @@ function Chat() {
                     </p>
                 </div>
                 <div className="chat__headerRight">
-                <IconButton>
-                        <SearchOutlined />
-                    </IconButton>
-                    <IconButton>
-                        <AttachFile />
-                    </IconButton>
-                    <IconButton>
-                        <MoreVert />
+                <IconButton type="submit" onClick={startCall}>
+                <VideocamIcon />
+                    <p>Start a VideoCall</p> 
                     </IconButton>
                 </div>
             </div>
             <div className="chat__body">
                 {messages.map((message)=>(
                     <p className={`chat__message ${message.name===user.displayName&&"chat__receiver"}`}>
-                        <span className="chat__name ">{message.name}
-                            </span>
-                            {message.message}
+                        <span className="chat__name ">{message.name}</span>
+                            {
+                                (message.isLink)?( <a href={`${message.message}`} target="_blank">{message.message}</a>):
+                                (<span>
+                                    {message.message}</span>)
+                             }
                             <span className="chat__timestamp">
                                 {new Date(message.time?.toDate()).toUTCString()}
                             </span>
