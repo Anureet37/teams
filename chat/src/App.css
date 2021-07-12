@@ -9,7 +9,7 @@
   display:flex;
   background-color: #ededed;
   height:95vh;
-  width:90vw;
+  width:100vw;
   box-shadow: -1px 4px 20px -6px rgba(0,0,0,0.2);
 }
 #head >img{
@@ -20,5 +20,6 @@
 #head{
   text-align: center;
   padding-top: 50px;
+  width:100%;
   background-color: rgb(231, 229, 229);
 }
